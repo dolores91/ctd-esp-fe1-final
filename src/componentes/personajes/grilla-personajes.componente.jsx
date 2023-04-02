@@ -11,25 +11,21 @@ import { getTarjetas } from "../../redux/gallerySlice"
  * 
  * @returns un JSX element 
  */
-const GrillaPersonajes = () => {
-  const [page, setPage] = useState(1)
-  const dispatch = useAppDispatch()
-  const gallery = useAppSelector(state => state.gallery)
-
-  useEffect(() => {
-    dispatch(getTarjetas(page))
-  }, [page])
-
-  console.log(gallery);
-  return <div className="grilla-personajes">
-    <TarjetaPersonaje />
-   {/*} {gallery?.map((tarjeta) => (
-      <TarjetaPersonaje
-        name={tarjeta.name}
-        image={tarjeta.image}
-      />
-    ))}*/}
-  </div>
-}
+const GrillaPersonajes = ({ personajes, onclick }) => {
+  console.log(personajes);
+  return (
+      <div className='grilla-personajes'>
+          {personajes?.map((personaje) => (
+              <TarjetaPersonaje
+                  key={personaje.id}
+                  name={personaje.name}
+                  image={personaje.image}
+                  onclick={() => onclick(personaje.id)}
+                  esFavorito={false}
+              />
+          ))}
+      </div>
+  );
+};
 
 export default GrillaPersonajes;

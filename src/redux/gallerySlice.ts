@@ -4,12 +4,24 @@ import thunk from "redux-thunk"
 
 
 interface Tarjeta {
-    id: string
-    author: string
-    width: number
-    height: number,
-    url: string,
-    download_url: string
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    type: string;
+    gender: string;
+    origin: {
+        name: string;
+        url: string;
+    },
+    location: {
+        name: string;
+        url: string;
+    },
+    image: string;
+    episode: [string];
+    url: string;
+    created: string;
 }
 
 interface initialType {
@@ -23,11 +35,23 @@ export const getTarjetas = createAsyncThunk(
     async (page: number) => {
         const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
         const parseRes = await res.json()
-        return parseRes
+        const result = parseRes
+        console.log(result)
+        return result
 
     }
 )
+export const getFilter = createAsyncThunk(
+    'tarjeta',
+    async (name: string) => {
+        const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
+        const parseRes = await res.json()
+        const result = parseRes
+        return result
 
+        
+    }
+)
 
 const initialState: initialType = {
     tarjetas: [],
@@ -40,17 +64,17 @@ const gallerySlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getTarjetas.pending, (state) => {
-                state.loading = true
-            })
-            .addCase(getTarjetas.fulfilled, (state, action) => {
-                state.loading = false
-                state.tarjetas.push(...action.payload)
-            })
-            .addCase(getTarjetas.rejected, (state, action) => {
-                state.loading = false
-            })
-
+        .addCase(getTarjetas.pending, (state) => {
+            state.loading = true
+        })
+        .addCase(getTarjetas.fulfilled, (state, action) => {
+            state.loading = false
+            state.tarjetas= action.payload.results
+           // state.metaData= action.payload.info
+        })
+        .addCase(getTarjetas.rejected, (state, action) => {
+            state.loading = false
+        }) 
     }
 })
 
