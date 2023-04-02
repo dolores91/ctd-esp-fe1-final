@@ -1,4 +1,5 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
+
 import './tarjeta-personaje.css';
 
 /**
@@ -10,6 +11,7 @@ import './tarjeta-personaje.css';
  * @returns un JSX element 
  */
 const TarjetaPersonaje = () => {
+ 
 
     return <div className="tarjeta-personaje">
         <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
