@@ -8,11 +8,11 @@ import './paginacion.css';
  * 
  * @returns un JSX element 
  */
-const Paginacion = () => {
+const Paginacion = ({onPrevious, onNext}) => {
 
     return <div className="paginacion">
-        <button disabled={true} className={"primary"}>Anterior</button>
-        <button disabled={false} className={"primary"}>Siguiente</button>
+        <button disabled={false} className={"primary"}  onClick={onPrevious} >Anterior</button>
+        <button disabled={false} className={"primary"} onClick={onNext} >Siguiente</button>
     </div>
 }
 

@@ -19,7 +19,7 @@ import {
  * @returns la pagina de inicio
  */
 const PaginaInicio = () => {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(5);
     const dispatch = useAppDispatch();
     //let busqueda = useAppSelector((state) => state.personajes.inputValue);
     const personajes = useAppSelector((state) => state.gallery.tarjetas);
@@ -32,10 +32,15 @@ const PaginaInicio = () => {
    useEffect(() => {
     dispatch(getTarjetas(page));
 }, [page, dispatch]);
-
-
 console.log(personajes);
 
+//funciones de paginación
+const previous = () => {
+    setPage((page) => page - 1);
+};
+const next = () => {
+    setPage((page) => page + 1);
+};
 
 
 
@@ -45,9 +50,11 @@ console.log(personajes);
             <button className="danger">Test Button</button>
         </div>
         <Filtros />
-        <Paginacion />
+        <Paginacion   onPrevious={previous}
+                onNext={next}/>
         <GrillaPersonajes  personajes={personajes} />
-        <Paginacion />
+        <Paginacion onPrevious={previous}
+                onNext={next}/>
     </div>
 }
 
