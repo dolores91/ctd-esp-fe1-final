@@ -54,7 +54,7 @@ interface initialType {
 const initialState: initialType = {
     tarjetas: [],
     loading: false,
-    name: "alien"
+    name: ""
 }
 
 const gallerySlice = createSlice({
