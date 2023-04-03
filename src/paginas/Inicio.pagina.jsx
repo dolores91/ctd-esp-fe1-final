@@ -1,9 +1,9 @@
 import Filtros from "../componentes/personajes/filtros.componente"
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente"
 import Paginacion from "../componentes/paginacion/paginacion.componente";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { getFilter,getTarjetas} from '../redux/gallerySlice.ts';
+import { getFilter, getTarjetas } from '../redux/gallerySlice.ts';
 
 /**
  * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
@@ -18,7 +18,7 @@ const PaginaInicio = () => {
     const dispatch = useAppDispatch();
     const personajes = useAppSelector((state) => state.gallery.tarjetas);
     const name = useAppSelector((state) => state.gallery.name);
-   
+    const inputRef = useRef(null);
 
     //const favoritos = useAppSelector((state) => state.personajes.favoritos);
 
@@ -32,27 +32,36 @@ const PaginaInicio = () => {
     //console.log("personajes:", personajes);
 
 
-    //funciones de paginación
+    //Paginación
     const previous = () => {
         setPage((page) => page - 1);
     };
     const next = () => {
         setPage((page) => page + 1);
     };
+    //limpiar filtro
+    const handleClickLimpiar = () => {
 
+        dispatch(getTarjetas(page))
+        inputRef.current.value = '';
+    }
 
     return <div className="container">
         <div className="actions">
             <h3>Catálogo de Personajes</h3>
-            <button className="danger">Test Button</button>
+            <button className="danger"
+                onClick={handleClickLimpiar}>Limpiar filtros</button>
         </div>
         <Filtros
-
+            inputRef={inputRef}
         />
-        <Paginacion onPrevious={previous}
+        <Paginacion
+            onPrevious={previous}
             onNext={next} />
-        <GrillaPersonajes personajes={personajes} />
-        <Paginacion onPrevious={previous}
+        <GrillaPersonajes
+            personajes={personajes} />
+        <Paginacion
+            onPrevious={previous}
             onNext={next} />
     </div>
 }
