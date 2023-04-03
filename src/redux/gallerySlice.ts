@@ -1,7 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import thunk from "redux-thunk"
-
-
 
 interface Tarjeta {
     id: number;
@@ -24,11 +21,6 @@ interface Tarjeta {
     created: string;
 }
 
-interface initialType {
-    tarjetas: Tarjeta[]
-    loading: boolean
-}
-
 
 export const getTarjetas = createAsyncThunk(
     'gallery/tarjetas',
@@ -36,32 +28,40 @@ export const getTarjetas = createAsyncThunk(
         const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
         const parseRes = await res.json()
         const result = parseRes
-        console.log(result)
+        console.log("gallery/tarjetas",result)
         return result
 
     }
 )
 export const getFilter = createAsyncThunk(
-    'tarjeta',
+    'gallery/filter',
     async (name: string) => {
-        const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
-        const parseRes = await res.json()
-        const result = parseRes
-        return result
+        const res2 = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
+        const parseRes2 = await res2.json()
+        const result2 = parseRes2
+        console.log("gallery/filter",result2);
+        return result2
 
         
     }
 )
+interface initialType {
+    tarjetas: Tarjeta[]
+    loading: boolean
+    name: string
+}
 
 const initialState: initialType = {
     tarjetas: [],
-    loading: false
+    loading: false,
+    name: "alien"
 }
 
 const gallerySlice = createSlice({
     name: 'gallery',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
         builder
         .addCase(getTarjetas.pending, (state) => {
@@ -75,12 +75,19 @@ const gallerySlice = createSlice({
         .addCase(getTarjetas.rejected, (state, action) => {
             state.loading = false
         }) 
+        .addCase(getFilter.fulfilled, (state, action) => {
+            state.loading = false
+            state.tarjetas= action.payload.results
+           // state.metaData= action.payload.info
+        })
+        .addCase(getFilter.pending, (state) => {
+            state.loading = true
+        })
     }
 })
 
 export default gallerySlice.reducer
 
-// Action creators are generated for each case reducer function
-//export const { increment, decrement, incrementByAmount } = gallerySlice.actions
+
 
 

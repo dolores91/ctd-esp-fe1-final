@@ -12,7 +12,7 @@ import { getTarjetas } from "../../redux/gallerySlice"
  * @returns un JSX element 
  */
 const GrillaPersonajes = ({ personajes, onclick }) => {
-  console.log(personajes);
+  //console.log(personajes);
   return (
       <div className='grilla-personajes'>
           {personajes?.map((personaje) => (
