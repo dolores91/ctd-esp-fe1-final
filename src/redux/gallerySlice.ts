@@ -49,18 +49,23 @@ interface initialType {
     tarjetas: Tarjeta[]
     loading: boolean
     name: string
+    favoritos: number []
 }
 
 const initialState: initialType = {
     tarjetas: [],
     loading: false,
-    name: ""
+    name: "",
+    favoritos:[]
 }
 
 const gallerySlice = createSlice({
     name: 'gallery',
     initialState,
     reducers: {
+        guardarFavoritos: (state, action) => {
+        state.favoritos = action.payload
+    }
     },
     extraReducers: (builder) => {
         builder
@@ -85,7 +90,7 @@ const gallerySlice = createSlice({
         })
     }
 })
-
+export const { guardarFavoritos} = gallerySlice.actions
 export default gallerySlice.reducer
 
 

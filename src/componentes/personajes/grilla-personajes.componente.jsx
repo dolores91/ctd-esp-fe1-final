@@ -1,8 +1,6 @@
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
-import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from './../../redux/hooks'
-import { getTarjetas } from "../../redux/gallerySlice"
+
 /**
  * Grilla de personajes para la pagina de inicio
  * 
@@ -11,21 +9,23 @@ import { getTarjetas } from "../../redux/gallerySlice"
  * 
  * @returns un JSX element 
  */
-const GrillaPersonajes = ({ personajes, onclick }) => {
-  //console.log(personajes);
-  return (
-      <div className='grilla-personajes'>
-          {personajes?.map((personaje) => (
-              <TarjetaPersonaje
-                  key={personaje.id}
-                  name={personaje.name}
-                  image={personaje.image}
-                  onclick={() => onclick(personaje.id)}
-                  esFavorito={false}
-              />
-          ))}
-      </div>
-  );
+const GrillaPersonajes = ({ personajes, onclick, favoritos }) => {
+    //console.log(personajes);
+    return (
+        <div className='grilla-personajes'>
+            {personajes?.map((personaje) => (
+                <TarjetaPersonaje
+                    key={personaje.id}
+                    name={personaje.name}
+                    image={personaje.image}
+                    onclick={() => onclick(personaje.id)}
+                    esFavorito={favoritos.some(
+                        (favorito) => favorito === personaje.id
+                    )}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default GrillaPersonajes;

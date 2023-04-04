@@ -27,9 +27,9 @@ type BotonFavoritoProps = {
 const BotonFavorito = ({esFavorito, onClick}: BotonFavoritoProps) => {
     const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png"
 
-    return <div className="boton-favorito">
+    return <div className="boton-favorito" onClick={onClick}>
         <img src={src} alt={"favorito"} />
-    </div>
+    </div> 
 }
 
 export default BotonFavorito;
