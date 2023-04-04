@@ -33,7 +33,7 @@ console.log(personajesFiltrados);
     return <div className="container">
         <div className="actions">
             <h3>Personajes Favoritos</h3>
-            <button className="danger">Test Button</button>
+            <button className="danger">Eliminar todos</button>
         </div>
         <GrillaPersonajes
          personajes={personajesFiltrados}

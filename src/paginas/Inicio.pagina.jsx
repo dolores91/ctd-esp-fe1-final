@@ -14,7 +14,7 @@ import { getFilter, getTarjetas, guardarFavoritos } from '../redux/gallerySlice.
  * @returns la pagina de inicio
  */
 const PaginaInicio = () => {
-    const [page, setPage] = useState(5);
+    const [page, setPage] = useState(2);
     const dispatch = useAppDispatch();
     const personajes = useAppSelector((state) => state.gallery.tarjetas);
     const name = useAppSelector((state) => state.gallery.name);
@@ -43,7 +43,6 @@ const PaginaInicio = () => {
     };
     //limpiar filtro
     const handleClickLimpiar = () => {
-
         dispatch(getTarjetas(page))
         inputRef.current.value = '';
     }
