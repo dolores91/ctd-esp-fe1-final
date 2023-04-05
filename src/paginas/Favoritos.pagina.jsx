@@ -1,6 +1,6 @@
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import {  guardarFavoritos } from '../redux/gallerySlice.ts';
+import {  guardarFavoritos, borrarFavoritos } from '../redux/gallerySlice.ts';
 
 
 /**
@@ -30,10 +30,16 @@ const PaginaFavoritos = () => {
 const personajesFiltrados = personajes.filter(personajes => favoritos.includes(personajes.id));
 console.log(personajesFiltrados);
 
+
+const handleClickfav = () =>{
+    dispatch(borrarFavoritos())
+
+}
+
     return <div className="container">
         <div className="actions">
             <h3>Personajes Favoritos</h3>
-            <button className="danger">Eliminar todos</button>
+            <button className="danger" onClick={handleClickfav}>Eliminar todos</button>
         </div>
         <GrillaPersonajes
          personajes={personajesFiltrados}

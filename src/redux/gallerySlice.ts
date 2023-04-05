@@ -28,7 +28,7 @@ export const getTarjetas = createAsyncThunk(
         const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
         const parseRes = await res.json()
         const result = parseRes
-        console.log("gallery/tarjetas",result)
+        console.log("gallery/tarjetas", result)
         return result
 
     }
@@ -39,24 +39,24 @@ export const getFilter = createAsyncThunk(
         const res2 = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
         const parseRes2 = await res2.json()
         const result2 = parseRes2
-        console.log("gallery/filter",result2);
+        console.log("gallery/filter", result2);
         return result2
 
-        
+
     }
 )
 interface initialType {
     tarjetas: Tarjeta[]
     loading: boolean
     name: string
-    favoritos: number []
+    favoritos: number[]
 }
 
 const initialState: initialType = {
     tarjetas: [],
     loading: false,
     name: "",
-    favoritos:[]
+    favoritos: []
 }
 
 const gallerySlice = createSlice({
@@ -64,33 +64,37 @@ const gallerySlice = createSlice({
     initialState,
     reducers: {
         guardarFavoritos: (state, action) => {
-        state.favoritos = action.payload
-    }
+            state.favoritos = action.payload
+        },
+        borrarFavoritos: (state) => {
+          state.favoritos = []
+        }
     },
+
     extraReducers: (builder) => {
         builder
-        .addCase(getTarjetas.pending, (state) => {
-            state.loading = true
-        })
-        .addCase(getTarjetas.fulfilled, (state, action) => {
-            state.loading = false
-            state.tarjetas= action.payload.results
-           // state.metaData= action.payload.info
-        })
-        .addCase(getTarjetas.rejected, (state, action) => {
-            state.loading = false
-        }) 
-        .addCase(getFilter.fulfilled, (state, action) => {
-            state.loading = false
-            state.tarjetas= action.payload.results
-           // state.metaData= action.payload.info
-        })
-        .addCase(getFilter.pending, (state) => {
-            state.loading = true
-        })
+            .addCase(getTarjetas.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(getTarjetas.fulfilled, (state, action) => {
+                state.loading = false
+                state.tarjetas = action.payload.results
+                // state.metaData= action.payload.info
+            })
+            .addCase(getTarjetas.rejected, (state, action) => {
+                state.loading = false
+            })
+            .addCase(getFilter.fulfilled, (state, action) => {
+                state.loading = false
+                state.tarjetas = action.payload.results
+                // state.metaData= action.payload.info
+            })
+            .addCase(getFilter.pending, (state) => {
+                state.loading = true
+            })
     }
 })
-export const { guardarFavoritos} = gallerySlice.actions
+export const { guardarFavoritos, borrarFavoritos } = gallerySlice.actions
 export default gallerySlice.reducer
 
 

@@ -1,10 +1,5 @@
 import './boton-favorito.css';
 /**
- * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
- * 
- * Deberás tipar las propiedades si usas este componente
-
-/**
  * Componente BotonFavorito
  *
  * Este componente muestra un botón de favorito que puede ser marcado o desmarcado
