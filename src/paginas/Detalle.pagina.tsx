@@ -8,8 +8,6 @@ import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.component
  * 
  * @returns la pagina de detalle
  */
-
-
 interface Props {
     onclick: () => void;
     esFavorito: boolean;

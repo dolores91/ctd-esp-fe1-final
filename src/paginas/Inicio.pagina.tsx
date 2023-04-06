@@ -57,6 +57,7 @@ const PaginaInicio = (): JSX.Element => {
             dispatch(guardarFavoritos([...favoritos, id]));
         }
     };
+//console.log(personajes.length);
 
     return <div className="container">
         <div className="actions">
@@ -71,7 +72,7 @@ const PaginaInicio = (): JSX.Element => {
         <Paginacion
             onPrevious={previous}
             onNext={next} />
-        <GrillaPersonajes
+     <GrillaPersonajes
             personajes={personajes}
             onclick={onFavorite}
             favoritos={favoritos} />

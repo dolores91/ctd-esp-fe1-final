@@ -33,6 +33,7 @@ const PaginaFavoritos = () => {
     const handleClickfav = () => {
         dispatch(borrarFavoritos())
     }
+//console.log(personajesFiltrados.length);
 
     return <div className="container">
         <div className="actions">
@@ -41,10 +42,11 @@ const PaginaFavoritos = () => {
                 onClick={handleClickfav}>Eliminar todos
             </button>
         </div>
-        <GrillaPersonajes
+        {personajesFiltrados.length !==0 ? <GrillaPersonajes
             personajes={personajesFiltrados}
             onclick={onFavorite}
-            favoritos={favoritos} />
+            favoritos={favoritos} /> :<h5 className="h5-fav">Prueba seleccionando tus favoritos</h5>}
+       
     </div>
 }
 

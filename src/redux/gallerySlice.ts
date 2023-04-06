@@ -26,10 +26,16 @@ export const getTarjetas = createAsyncThunk(
     'gallery/tarjetas',
     async (page: number) => {
         const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-        const parseRes = await res.json()
+        console.log();
+        if (res.ok) {
+          const parseRes = await res.json()
         const result = parseRes
         console.log("gallery/tarjetas", result)
-        return result
+        return result  
+        }else{
+            alert("En este momento no podemos cargar la información, por favor intente más tarde")
+        }
+        
 
     }
 )
@@ -37,10 +43,11 @@ export const getFilter = createAsyncThunk(
     'gallery/filter',
     async (name: string) => {
         const res2 = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
-        const parseRes2 = await res2.json()
+        
+          const parseRes2 = await res2.json()
         const result2 = parseRes2
-        console.log("gallery/filter", result2);
-        return result2
+        return result2   
+      
 
 
     }
