@@ -1,13 +1,17 @@
 import './filtros.css';
 import { useAppDispatch } from '../../redux/hooks';
 import { getFilter } from '../../redux/gallerySlice';
-import { useRef } from "react"
+import React, { FC, RefObject } from 'react';
 
-const Filtros = ({ inputRef }) => {
+interface FiltrosProps {
+  inputRef: RefObject<HTMLInputElement>;
+}
+
+const Filtros: FC<FiltrosProps> = ({ inputRef }) => {
 
   const dispatch = useAppDispatch();
   return <div className="filtros">
-    <label for="nombre">Filtrar por nombre:</label>
+    <label htmlFor="nombre">Filtrar por nombre:</label>
     <input type="text"
       placeholder="Rick, Morty, Beth, Alien, ...etc"
       name="nombre"

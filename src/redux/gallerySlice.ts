@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-interface Tarjeta {
+export interface Tarjeta {
     id: number;
     name: string;
     status: string;

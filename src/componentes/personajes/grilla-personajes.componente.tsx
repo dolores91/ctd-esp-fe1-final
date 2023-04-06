@@ -1,15 +1,17 @@
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
-
+import { Tarjeta } from "../../redux/gallerySlice";
+import PropTypes from 'prop-types';
 /**
  * Grilla de personajes para la pagina de inicio
- * 
- * Deberás agregar las funciones necesarias para mostrar y paginar los personajes
- * 
- * 
  * @returns un JSX element 
  */
-const GrillaPersonajes = ({ personajes, onclick, favoritos }) => {
+interface Props {
+    personajes: Tarjeta[];
+    onclick: (id: number) => void;
+    favoritos: number[];
+}
+const GrillaPersonajes= ({ personajes, onclick, favoritos }: Props) => {
     //console.log(personajes);
     return (
         <div className='grilla-personajes'>
@@ -29,3 +31,8 @@ const GrillaPersonajes = ({ personajes, onclick, favoritos }) => {
 };
 
 export default GrillaPersonajes;
+GrillaPersonajes.protoType ={
+    personajes: PropTypes.object.isRequired,
+    onclick: PropTypes.func.isRequired,
+    favoritos: PropTypes.object.isRequired
+}

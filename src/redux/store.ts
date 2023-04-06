@@ -1,12 +1,10 @@
 import { configureStore} from "@reduxjs/toolkit";
 import galleryReducer from "./gallerySlice"
-///import filterSlice from "./filterSlice";
 
 
 const store = configureStore({
     reducer: {
         gallery: galleryReducer,
-   //     filter: filterSlice
     },
 });
 

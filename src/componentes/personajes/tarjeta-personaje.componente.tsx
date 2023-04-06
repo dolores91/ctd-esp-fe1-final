@@ -1,16 +1,19 @@
 import BotonFavorito from '../botones/boton-favorito.componente';
-
+import PropTypes from 'prop-types';
 import './tarjeta-personaje.css';
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
  * 
- * Deberás agregar las propiedades necesarias para mostrar los datos de los personajes
- * 
- * 
  * @returns un JSX element 
  */
-const TarjetaPersonaje = ({ name, image, onclick, esFavorito }) => {
+interface Props {
+    name: string;
+    image: string;
+    onclick: () => void;
+    esFavorito: boolean;
+};
+const TarjetaPersonaje = ({ name, image, onclick, esFavorito }: Props) => {
     return (
         <div className='tarjeta-personaje'>
             <img src={image} alt={name} />
@@ -23,3 +26,10 @@ const TarjetaPersonaje = ({ name, image, onclick, esFavorito }) => {
 };
 
 export default TarjetaPersonaje;
+
+TarjetaPersonaje.propTypes = {
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    onclick: PropTypes.func.isRequired,
+    esFavorito: PropTypes.bool.isRequired
+}
