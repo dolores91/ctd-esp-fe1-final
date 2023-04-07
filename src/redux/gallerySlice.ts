@@ -53,13 +53,15 @@ interface initialType {
     loading: boolean
     name: string
     favoritos: number[]
+    page: number
 }
 
 const initialState: initialType = {
     tarjetas: [],
     loading: false,
     name: "",
-    favoritos: []
+    favoritos: [],
+    page: 1
 }
 
 const gallerySlice = createSlice({
@@ -71,7 +73,13 @@ const gallerySlice = createSlice({
         },
         borrarFavoritos: (state) => {
             state.favoritos = []
-        }
+        },
+        nextPage: (state) => {
+            state.page += 1;
+        },
+        prevPage: (state) => {
+            state.page -= 1;
+        },
     },
 
     extraReducers: (builder) => {
@@ -97,7 +105,7 @@ const gallerySlice = createSlice({
             })
     }
 })
-export const { guardarFavoritos, borrarFavoritos } = gallerySlice.actions
+export const { guardarFavoritos, borrarFavoritos, nextPage, prevPage } = gallerySlice.actions
 export default gallerySlice.reducer
 
 

@@ -1,9 +1,9 @@
 import Filtros from "../componentes/personajes/filtros.componente"
 import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente"
 import Paginacion from "../componentes/paginacion/paginacion.componente";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { getFilter, getTarjetas, guardarFavoritos } from '../redux/gallerySlice';
+import { getFilter, getTarjetas, guardarFavoritos, nextPage, prevPage } from '../redux/gallerySlice';
 
 /**
  * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
@@ -14,12 +14,13 @@ import { getFilter, getTarjetas, guardarFavoritos } from '../redux/gallerySlice'
  * @returns la pagina de inicio
  */
 const PaginaInicio = (): JSX.Element => {
-    const [page, setPage] = useState<number>(2);
+    //const [page, setPage] = useState<number>(2);
     const dispatch = useAppDispatch();
     const personajes = useAppSelector((state) => state.gallery.tarjetas);
     const name = useAppSelector((state) => state.gallery.name);
     const inputRef = useRef<HTMLInputElement>(null);
     const favoritos = useAppSelector((state) => state.gallery.favoritos);
+    const page = useAppSelector((state) => state.gallery.page);
 
     useEffect(() => {
         dispatch(getTarjetas(page));
@@ -33,10 +34,10 @@ const PaginaInicio = (): JSX.Element => {
 
     //----------------Paginación
     const previous = (): void => {
-        setPage((page) => page - 1);
+       dispatch(prevPage());
     };
     const next = (): void => {
-        setPage((page) => page + 1);
+        dispatch(nextPage());
     };
 console.log(page);
 
