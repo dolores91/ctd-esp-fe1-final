@@ -28,14 +28,14 @@ export const getTarjetas = createAsyncThunk(
         const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
         console.log();
         if (res.ok) {
-          const parseRes = await res.json()
-        const result = parseRes
-        console.log("gallery/tarjetas", result)
-        return result  
-        }else{
+            const parseRes = await res.json()
+            const result = parseRes
+            //console.log("gallery/tarjetas", result)
+            return result
+        } else {
             alert("En este momento no podemos cargar la información, por favor intente más tarde")
         }
-        
+
 
     }
 )
@@ -43,13 +43,9 @@ export const getFilter = createAsyncThunk(
     'gallery/filter',
     async (name: string) => {
         const res2 = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`)
-        
-          const parseRes2 = await res2.json()
+        const parseRes2 = await res2.json()
         const result2 = parseRes2
-        return result2   
-      
-
-
+        return result2
     }
 )
 interface initialType {
@@ -74,7 +70,7 @@ const gallerySlice = createSlice({
             state.favoritos = action.payload
         },
         borrarFavoritos: (state) => {
-          state.favoritos = []
+            state.favoritos = []
         }
     },
 
@@ -86,7 +82,7 @@ const gallerySlice = createSlice({
             .addCase(getTarjetas.fulfilled, (state, action) => {
                 state.loading = false
                 state.tarjetas = action.payload.results
-                // state.metaData= action.payload.info
+
             })
             .addCase(getTarjetas.rejected, (state, action) => {
                 state.loading = false
@@ -94,7 +90,7 @@ const gallerySlice = createSlice({
             .addCase(getFilter.fulfilled, (state, action) => {
                 state.loading = false
                 state.tarjetas = action.payload.results
-                // state.metaData= action.payload.info
+
             })
             .addCase(getFilter.pending, (state) => {
                 state.loading = true

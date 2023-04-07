@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
  */
 interface Props {
     personajes: Tarjeta[];
-    onclick: (id: number) => void;
+    onClick: (id: number) => void;
     favoritos: number[];
 }
-const GrillaPersonajes= ({ personajes, onclick, favoritos }: Props) => {
+const GrillaPersonajes= ({ personajes, onClick, favoritos }: Props) => {
     //console.log(personajes);
     return (
         <div className='grilla-personajes'>
@@ -20,7 +20,7 @@ const GrillaPersonajes= ({ personajes, onclick, favoritos }: Props) => {
                     key={personaje.id}
                     name={personaje.name}
                     image={personaje.image}
-                    onclick={() => onclick(personaje.id)}
+                    onClick={() => onClick(personaje.id)}
                     esFavorito={favoritos.some(
                         (favorito) => favorito === personaje.id
                     )}
@@ -33,6 +33,6 @@ const GrillaPersonajes= ({ personajes, onclick, favoritos }: Props) => {
 export default GrillaPersonajes;
 GrillaPersonajes.protoType ={
     personajes: PropTypes.object.isRequired,
-    onclick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
     favoritos: PropTypes.object.isRequired
 }

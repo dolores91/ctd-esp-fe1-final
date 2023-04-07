@@ -1,5 +1,5 @@
 import './paginacion.css';
-import React, { FC, MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 
 /**
  * Componente que contiene los botones para paginar

@@ -44,7 +44,7 @@ const PaginaFavoritos = () => {
         </div>
         {personajesFiltrados.length !==0 ? <GrillaPersonajes
             personajes={personajesFiltrados}
-            onclick={onFavorite}
+            onClick={onFavorite}
             favoritos={favoritos} /> :<h5 className="h5-fav">Prueba seleccionando tus favoritos</h5>}
        
     </div>

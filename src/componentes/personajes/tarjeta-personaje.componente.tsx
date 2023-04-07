@@ -10,16 +10,16 @@ import './tarjeta-personaje.css';
 interface Props {
     name: string;
     image: string;
-    onclick: () => void;
+    onClick: () => void;
     esFavorito: boolean;
 };
-const TarjetaPersonaje = ({ name, image, onclick, esFavorito }: Props) => {
+const TarjetaPersonaje = ({ name, image, onClick, esFavorito }: Props) => {
     return (
         <div className='tarjeta-personaje'>
             <img src={image} alt={name} />
             <div className='tarjeta-personaje-body'>
                 <span>{name}</span>
-                <BotonFavorito esFavorito={esFavorito} onClick={onclick} />
+                <BotonFavorito esFavorito={esFavorito} onClick={onClick} />
             </div>
         </div>
     );
@@ -30,6 +30,6 @@ export default TarjetaPersonaje;
 TarjetaPersonaje.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    onclick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
     esFavorito: PropTypes.bool.isRequired
 }

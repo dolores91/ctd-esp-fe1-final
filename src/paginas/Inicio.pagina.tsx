@@ -38,6 +38,7 @@ const PaginaInicio = (): JSX.Element => {
     const next = (): void => {
         setPage((page) => page + 1);
     };
+console.log(page);
 
     //----------------limpiar filtro
     const handleClickLimpiar = (): void => {
@@ -74,7 +75,7 @@ const PaginaInicio = (): JSX.Element => {
             onNext={next} />
      <GrillaPersonajes
             personajes={personajes}
-            onclick={onFavorite}
+            onClick={onFavorite}
             favoritos={favoritos} />
         <Paginacion
             onPrevious={previous}
