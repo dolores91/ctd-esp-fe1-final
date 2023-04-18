@@ -3,13 +3,10 @@
 ## **Practica aplicando REACT, Redux, TypeScript, Thunk, JSdoc**
 
 
-[Link al vide](https://drive.google.com/file/d/1frDED-S1tIpGXrHx8z6CfugjHmljWsEQ/view)
+[Link al video](https://drive.google.com/file/d/1frDED-S1tIpGXrHx8z6CfugjHmljWsEQ/view)
 
 
 ## Funcionalidades
-
-
-* La aplicación deberá contar con dos páginas:
 
   1 - La página de inicio que debe contar con:
 
